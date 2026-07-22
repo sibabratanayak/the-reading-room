@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHIVA Institute of English</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c1f26;
+    --parchment:#f3ead9;
+    --parchment-deep:#e7d9bb;
+    --burgundy:#7c2d3a;
+    --burgundy-deep:#5e2129;
+    --gold:#b8934a;
+    --sage:#4f6153;
+    --line: rgba(28,31,38,0.16);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Source Serif 4', serif;
+    line-height:1.6;
+    background-image:
+      radial-gradient(circle at 15% 10%, rgba(184,147,74,0.10), transparent 40%),
+      radial-gradient(circle at 85% 30%, rgba(124,45,58,0.07), transparent 45%);
+  }
+  h1,h2,h3{ font-family:'Playfair Display', serif; margin:0; color:var(--ink); }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--burgundy);
+  }
+  a{ color:var(--burgundy); }
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 28px; }
+
+  /* Header */
+  header.site{
+    position:sticky; top:0; z-index:40;
+    background:rgba(243,234,217,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px; max-width:1080px; margin:0 auto;
+  }
+  .brand{ display:flex; align-items:center; gap:10px; }
+  .brand svg{ width:26px; height:26px; flex-shrink:0; }
+  .brand span{ font-family:'Playfair Display',serif; font-weight:700; font-size:20px; letter-spacing:0.01em; }
+  .nav-links{ display:flex; gap:28px; align-items:center; }
+  .nav-links a{
+    text-decoration:none; color:var(--ink); font-size:15px;
+    border-bottom:1px solid transparent; padding-bottom:2px;
+  }
+  .nav-links a:hover{ border-bottom-color:var(--gold); }
+
+  /* Hero */
+  .hero{ padding:88px 0 64px; position:relative; overflow:hidden; }
+  .hero-grid{ display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center; }
+  .hero h1{
+    font-size:clamp(40px,5.4vw,64px);
+    line-height:1.05;
+    font-weight:700;
+  }
+  .hero h1 .ink{
+    display:inline-block;
+    background-image:linear-gradient(90deg, var(--burgundy), var(--burgundy));
+    background-repeat:no-repeat;
+    background-size:0% 100%;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:var(--ink);
+    animation:bleed 1.6s ease forwards 0.2s;
+  }
+  @keyframes bleed{ to{ background-size:100% 100%; } }
+  .hero p.lede{ font-size:19px; max-width:46ch; color:#3a3f47; margin-top:18px; }
+  .hero .cta-row{ display:flex; gap:14px; margin-top:32px; flex-wrap:wrap; }
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px; letter-spacing:0.06em; text-transform:uppercase;
+    padding:13px 22px; border-radius:2px; border:1px solid var(--ink);
+    background:var(--ink); color:var(--parchment); cursor:pointer;
+    text-decoration:none; display:inline-flex; align-items:center; gap:8px;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .btn:hover{ transform:translateY(-1px); background:var(--burgundy); border-color:var(--burgundy); }
+  .btn.ghost{ background:transparent; color:var(--ink); }
+  .btn.ghost:hover{ background:var(--ink); color:var(--parchment); }
+
+  .hero-art{ display:flex; justify-content:center; }
+  .hero-art svg{ width:100%; max-width:340px; height:auto; }
+
+  .divider{
+    display:flex; align-items:center; gap:14px; margin:0 auto; max-width:1080px;
+    padding:0 28px 8px;
+  }
+  .divider .line{ flex:1; height:1px; background:var(--line); }
+  .divider svg{ width:22px; height:22px; opacity:0.65; }
+
+  section{ padding:64px 0; }
+  .section-head{ margin-bottom:36px; }
+  .section-head h2{ font-size:32px; margin-top:6px; }
+  .section-head p{ color:#4a4f57; max-width:60ch; margin-top:10px; }
+
+  /* Enroll card */
+  .enroll-card{
+    background:var(--parchment-deep);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:36px;
+    max-width:560px;
+  }
+  .tabs{ display:flex; gap:0; margin-bottom:24px; border-bottom:1px solid var(--line); }
+  .tab{
+    font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.05em; text-transform:uppercase;
+    padding:10px 4px; margin-right:28px; cursor:pointer; color:#6a6f77; background:none; border:none;
+    border-bottom:2px solid transparent;
+  }
+  .tab.active{ color:var(--burgundy); border-bottom-color:var(--burgundy); }
+  form.card-form{ display:flex; flex-direction:column; gap:14px; }
+  form.card-form label{ font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.05em; text-transform:uppercase; color:#555; }
+  form.card-form input{
+    font-family:'Source Serif 4',serif; font-size:16px; padding:10px 12px;
+    border:1px solid var(--line); border-radius:2px; background:#fbf7ee;
+  }
+  form.card-form input:focus{ outline:2px solid var(--gold); outline-offset:1px; }
+  .msg{ font-size:14px; margin-top:6px; }
+  .msg.ok{ color:var(--sage); }
+  .msg.err{ color:var(--burgundy); }
+  .pane{ display:none; }
+  .pane.active{ display:block; }
+
+  /* Library */
+  #library.locked .lib-grid{ filter:blur(4px) saturate(70%); pointer-events:none; user-select:none; }
+  .lock-note{
+    display:none; align-items:center; gap:10px; margin-bottom:20px;
+    font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--burgundy);
+    border:1px dashed var(--burgundy); padding:12px 16px; border-radius:2px; background:rgba(124,45,58,0.06);
+  }
+  #library.locked .lock-note{ display:flex; }
+  .lib-grid{
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:22px;
+  }
+  .lesson-card{
+    background:#fbf6e9; border:1px solid var(--line); border-radius:3px;
+    padding:22px 20px; cursor:pointer; position:relative;
+    transition:transform .15s ease, box-shadow .15s ease;
+    display:flex; flex-direction:column; gap:10px; min-height:170px;
+  }
+  .lesson-card:hover{ transform:translateY(-3px); box-shadow:0 10px 24px rgba(28,31,38,0.12); }
+  .lesson-card .numeral{ font-family:'Playfair Display',serif; font-style:italic; color:var(--gold); font-size:15px; }
+  .lesson-card h3{ font-size:20px; line-height:1.2; }
+  .lesson-card p{ font-size:14px; color:#555; margin:0; flex:1; }
+  .play-seal{
+    align-self:flex-end; width:34px; height:34px; border-radius:50%;
+    background:var(--burgundy); color:var(--parchment); display:flex; align-items:center; justify-content:center;
+  }
+  .empty-note{ font-family:'IBM Plex Mono',monospace; font-size:13px; color:#777; }
+
+  /* Modal */
+  .modal-bg{
+    display:none; position:fixed; inset:0; background:rgba(20,18,14,0.72); z-index:100;
+    align-items:center; justify-content:center; padding:24px;
+  }
+  .modal-bg.open{ display:flex; }
+  .modal{
+    background:var(--parchment); border-radius:4px; max-width:760px; width:100%;
+    padding:22px; position:relative;
+  }
+  .modal h3{ font-size:22px; margin-bottom:6px; padding-right:30px; }
+  .modal .video-frame{ position:relative; width:100%; padding-top:56.25%; background:#000; border-radius:2px; overflow:hidden; margin-top:14px; }
+  .modal .video-frame iframe, .modal .video-frame video{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+  .modal-close{
+    position:absolute; top:16px; right:16px; background:none; border:none; font-size:22px; cursor:pointer; color:var(--ink);
+    font-family:'IBM Plex Mono',monospace;
+  }
+
+  /* Instructor */
+  #instructor-gate{ font-size:13px; }
+  #instructor-panel{ display:none; }
+  #instructor-panel.open{ display:block; }
+  .admin-grid{ display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start; }
+  @media (max-width:820px){ .admin-grid{ grid-template-columns:1fr; } }
+  .roster-list{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px; max-height:280px; overflow:auto; }
+  .roster-list li{ font-size:14px; border-bottom:1px solid var(--line); padding-bottom:8px; display:flex; justify-content:space-between; gap:10px;}
+  .roster-list li span.email{ color:#777; font-size:12px; }
+  .admin-lessons-list{ display:flex; flex-direction:column; gap:10px; }
+  .admin-lesson-row{
+    display:flex; justify-content:space-between; align-items:center; gap:10px;
+    border:1px solid var(--line); padding:10px 14px; border-radius:2px; background:var(--parchment-deep);
+    font-size:14px;
+  }
+  .admin-lesson-row button{
+    background:none; border:none; color:var(--burgundy); cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:12px;
+  }
+  .small-note{ font-size:12px; color:#777; margin-top:6px; }
+
+  footer{
+    border-top:1px solid var(--line); padding:36px 0; margin-top:20px;
+  }
+
+  /* Director section */
+  .director-grid{ display:grid; grid-template-columns:300px 1fr; gap:48px; align-items:start; }
+  @media (max-width:760px){ .director-grid{ grid-template-columns:1fr; } }
+  .portrait-frame{
+    position:relative; padding:14px; background:#fbf6e9;
+    border:1px solid var(--gold); box-shadow:0 0 0 5px var(--parchment), 0 0 0 6px var(--line);
+  }
+  .portrait-frame img{ width:100%; display:block; filter:sepia(8%) contrast(1.02); }
+  .portrait-frame::before, .portrait-frame::after,
+  .portrait-corner-tl, .portrait-corner-br{ content:''; }
+  .portrait-caption{ text-align:center; margin-top:14px; }
+  .portrait-caption .role{ font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--burgundy); }
+  .director-name{ font-size:30px; margin-bottom:4px; }
+  .director-tagline{ color:#555; font-size:15px; margin:6px 0 22px; max-width:56ch; }
+  .cred-block{ margin-bottom:26px; }
+  .cred-block h3{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--burgundy); font-weight:500; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid var(--line);
+  }
+  .role-item{ margin-bottom:14px; }
+  .role-item .role-title{ font-family:'Playfair Display',serif; font-weight:600; font-size:16px; }
+  .role-item .role-meta{ font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:#8a7f6a; letter-spacing:0.03em; margin:2px 0 4px; }
+  .role-item p{ font-size:14.5px; color:#4a4f57; margin:0; }
+  .pill-row{ display:flex; flex-wrap:wrap; gap:8px; }
+  .pill{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; padding:5px 12px; border:1px solid var(--line);
+    border-radius:20px; color:#4a4f57; background:var(--parchment-deep);
+  }
+  .edu-list{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; }
+  .edu-list li{ font-size:14.5px; }
+  .edu-list li .deg{ font-weight:600; }
+  .edu-list li .inst{ color:#6a6f77; font-size:13px; }
+  .award-list{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:12px; }
+  .award-list li{ font-size:14px; color:#4a4f57; padding-left:16px; position:relative; }
+  .award-list li::before{ content:'✦'; position:absolute; left:0; color:var(--gold); font-size:12px; top:2px; }
+
+  /* Syllabus accordion */
+  .syllabus-sem{
+    border:1px solid var(--line); border-radius:3px; margin-bottom:14px; background:#fbf6e9; overflow:hidden;
+  }
+  .syllabus-sem summary{
+    cursor:pointer; padding:16px 20px; font-family:'Playfair Display',serif; font-size:18px; font-weight:600;
+    display:flex; justify-content:space-between; align-items:center; list-style:none;
+  }
+  .syllabus-sem summary::-webkit-details-marker{ display:none; }
+  .syllabus-sem summary::after{
+    content:'+'; font-family:'IBM Plex Mono',monospace; font-size:18px; color:var(--burgundy); font-weight:400;
+  }
+  .syllabus-sem[open] summary::after{ content:'−'; }
+  .syllabus-sem summary .sem-count{ font-family:'IBM Plex Mono',monospace; font-size:12px; color:#8a7f6a; margin-left:10px; font-weight:400; }
+  .syllabus-body{ padding:0 20px 20px; border-top:1px solid var(--line); }
+  .syllabus-course{ margin-top:18px; }
+  .syllabus-course h4{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.04em; text-transform:uppercase;
+    color:var(--burgundy); font-weight:500; margin:0 0 8px;
+  }
+  .syllabus-course ul{ margin:0; padding-left:18px; }
+  .syllabus-course li{ font-size:14.5px; margin-bottom:4px; color:#3a3f47; }
+  .syllabus-course li .auth{ color:#8a7f6a; font-size:13px; }
+  .book-link{
+    color:var(--ink); text-decoration:none; border-bottom:1px solid var(--gold);
+    transition:color .15s ease, border-color .15s ease;
+  }
+  .book-link:hover{ color:var(--burgundy); border-color:var(--burgundy); }
+  .syllabus-legend{
+    display:flex; gap:18px; flex-wrap:wrap; margin:-8px 0 22px;
+    font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:#8a7f6a;
+  }
+  .syllabus-legend span{ display:inline-flex; align-items:center; gap:6px; }
+  .syllabus-legend .dot{ width:7px; height:7px; border-radius:50%; display:inline-block; }
+  footer .wrap{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; align-items:center; }
+  footer p{ font-size:13px; color:#777; margin:0; }
+  #instructor-toggle{ font-family:'IBM Plex Mono',monospace; font-size:12px; text-transform:uppercase; letter-spacing:0.05em; background:none; border:none; color:#8a8f97; cursor:pointer; }
+  #instructor-toggle:hover{ color:var(--burgundy); }
+
+  @media (max-width:760px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero-art{ order:-1; margin-bottom:12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav">
+    <div class="brand">
+      <img src="data:image/png;base64,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" alt="SHIVA Institute of English logo" style="height:38px; width:auto; display:block;">
+      <span>SHIVA Institute of English</span>
+    </div>
+    <div class="nav-links">
+      <a href="#director">Director</a>
+      <a href="#enroll">Enroll</a>
+      <a href="#library">Library</a>
+      <a href="#syllabus">Syllabus</a>
+      <a href="#support">Support</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">SHIVA Institute of English &mdash; Bhubaneswar</p>
+      <h1>Read closely.<br><span class="ink">Watch deeply.</span></h1>
+      <p class="lede">Free enrollment, live and recorded lessons in English Language &amp; Literature — from board exams to CAT, GMAT, and beyond — led by Sibabrata Nayak.</p>
+      <div class="cta-row">
+        <a class="btn" href="#enroll">Enroll — it's free</a>
+        <a class="btn ghost" href="#library">Browse the library</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 300 300" fill="none">
+        <ellipse cx="150" cy="270" rx="110" ry="10" fill="#1c1f26" opacity="0.06"/>
+        <path d="M70 230 C70 150 90 90 150 60" stroke="#b8934a" stroke-width="1" opacity="0.5"/>
+        <path d="M60 235c30-5 150-5 180 5" stroke="#1c1f26" stroke-width="1.4" fill="none"/>
+        <path d="M65 232c40-40 130-40 170 3" stroke="#7c2d3a" stroke-width="1.4" fill="none"/>
+        <g transform="translate(150,60) rotate(28)">
+          <path d="M0 0 C10 40 6 90 -4 130 C-8 140 -16 142 -14 130 L-2 4 Z" fill="#3a3f47"/>
+          <path d="M0 0 C-30 6 -55 24 -60 46" stroke="#3a3f47" stroke-width="2" fill="none"/>
+          <path d="M0 0 C24 4 46 18 55 40" stroke="#3a3f47" stroke-width="2" fill="none"/>
+        </g>
+        <ellipse cx="95" cy="205" rx="22" ry="14" fill="#1c1f26"/>
+        <ellipse cx="95" cy="199" rx="17" ry="6" fill="#2a2e36"/>
+        <circle cx="180" cy="150" r="2" fill="#7c2d3a" opacity="0.5"/>
+        <circle cx="195" cy="170" r="1.4" fill="#7c2d3a" opacity="0.4"/>
+        <circle cx="205" cy="190" r="1" fill="#7c2d3a" opacity="0.3"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="divider">
+  <div class="line"></div>
+  <svg viewBox="0 0 24 24" fill="none"><path d="M12 2v14M12 16l-5-5M12 16l5-5" stroke="#b8934a" stroke-width="1.3"/><path d="M4 20h16" stroke="#b8934a" stroke-width="1.3"/></svg>
+  <div class="line"></div>
+</div>
+
+<section id="director">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">A word from the founder</p>
+      <h2>The Director</h2>
+    </div>
+    <div class="director-grid">
+      <div>
+        <div class="portrait-frame">
+          <img src="data:image/jpeg;base64,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" alt="Sibabrata Nayak">
+        </div>
+        <div class="portrait-caption">
+          <p class="role">English Faculty &amp; Communication Trainer</p>
+        </div>
+      </div>
+      <div>
+        <h3 class="director-name">Sibabrata Nayak</h3>
+        <p class="director-tagline">11+ years of teaching and L&amp;D experience across undergraduate literature, school-level English, and competitive-exam verbal training. Based in Bhubaneswar, Odisha.</p>
+
+        <div class="cred-block">
+          <h3>Current roles</h3>
+          <div class="role-item">
+            <p class="role-title">Assistant Professor (Contractual)</p>
+            <p class="role-meta">Raja Madhusudan Dev Degree College of Science &amp; Education, Patia — June 2016 to present</p>
+            <p>Teaches Core Honours English Literature to undergraduates, and delivers Skill &amp; Ability Enhancement Courses across Science, Arts, and Commerce streams.</p>
+          </div>
+          <div class="role-item">
+            <p class="role-title">RC/VA Trainer (Freelance)</p>
+            <p class="role-meta">T.I.M.E. — Triumphant Institute of Management Education — Sept. 2014 to present</p>
+            <p>Trains students in Reading Comprehension, Verbal Ability, Grammar, and Vocabulary for CAT, XAT, GMAT, and CLAT/IPM.</p>
+          </div>
+        </div>
+
+        <div class="cred-block">
+          <h3>Education</h3>
+          <ul class="edu-list">
+            <li><span class="deg">PGDTE, Teaching English</span><br><span class="inst">The English and Foreign Languages University, Hyderabad — 2025–2026</span></li>
+            <li><span class="deg">PGCTE, Teaching English</span><br><span class="inst">The English and Foreign Languages University, Hyderabad — 2019–2020</span></li>
+            <li><span class="deg">M.A. English (TESL/ESL)</span><br><span class="inst">The English and Foreign Languages University, Hyderabad — 2014–2016</span></li>
+            <li><span class="deg">M.Phil. English (Communicative English Grammar)</span><br><span class="inst">EIILM University — 2010–2011</span></li>
+            <li><span class="deg">M.A. English</span><br><span class="inst">Utkal University — 2008–2010</span></li>
+            <li><span class="deg">MBA, Human Resource Management</span><br><span class="inst">Sikkim Manipal University — 2006–2008</span></li>
+          </ul>
+        </div>
+
+        <div class="cred-block">
+          <h3>Areas of expertise</h3>
+          <div class="pill-row">
+            <span class="pill">Literature &amp; Pedagogy</span>
+            <span class="pill">Curriculum Design</span>
+            <span class="pill">Reading Comprehension &amp; Verbal Aptitude</span>
+            <span class="pill">ICSE / CBSE / State Board English</span>
+            <span class="pill">Soft Skills Coaching</span>
+            <span class="pill">Academic Mentorship</span>
+          </div>
+        </div>
+
+        <div class="cred-block" style="margin-bottom:0;">
+          <h3>Workshops &amp; recognitions</h3>
+          <ul class="award-list">
+            <li>Six-hour workshop on Teaching Reading, Dept. of Training and Development, School of English Language Education, EFL University, Hyderabad — Jan 2025</li>
+            <li>National Webinar on Academic Writing: Core Concepts and Essential Skills — Feb 2022</li>
+            <li>"Communication Skills in English and Personality Development," Dept. of English, Kamakhyanagar College, Dhenkanal — March 2022</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">
+  <div class="line"></div>
+  <svg viewBox="0 0 24 24" fill="none"><path d="M12 2v14M12 16l-5-5M12 16l5-5" stroke="#b8934a" stroke-width="1.3"/><path d="M4 20h16" stroke="#b8934a" stroke-width="1.3"/></svg>
+  <div class="line"></div>
+</div>
+
+<section id="enroll">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Chapter One</p>
+      <h2>Join the class</h2>
+      <p>New here? Enroll below — no fee, ever. Already enrolled? Sign in with the email you used, to unlock the library.</p>
+    </div>
+    <div class="enroll-card">
+      <div class="tabs">
+        <button class="tab active" data-tab="new">Enroll</button>
+        <button class="tab" data-tab="returning">I'm already enrolled</button>
+      </div>
+
+      <div class="pane active" id="pane-new">
+        <form class="card-form" id="enroll-form">
+          <div>
+            <label for="e-name">Full name</label>
+            <input id="e-name" type="text" required placeholder="Jane Eyre">
+          </div>
+          <div>
+            <label for="e-email">Email</label>
+            <input id="e-email" type="email" required placeholder="you@example.com">
+          </div>
+          <button class="btn" type="submit" style="align-self:flex-start; margin-top:6px;">Enroll — it's free</button>
+          <p class="msg" id="enroll-msg"></p>
+        </form>
+      </div>
+
+      <div class="pane" id="pane-returning">
+        <form class="card-form" id="signin-form">
+          <div>
+            <label for="s-email">Email</label>
+            <input id="s-email" type="email" required placeholder="you@example.com">
+          </div>
+          <button class="btn" type="submit" style="align-self:flex-start; margin-top:6px;">Unlock the library</button>
+          <p class="msg" id="signin-msg"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="library" class="locked">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Chapter Two</p>
+      <h2>The library</h2>
+      <p>Every lesson, in order.</p>
+    </div>
+    <p class="lock-note">🔒 Enroll or sign in above to unlock these lessons.</p>
+    <div class="lib-grid" id="lib-grid">
+      <p class="empty-note">Loading the shelves…</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider">
+  <div class="line"></div>
+  <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2" fill="#b8934a"/></svg>
+  <div class="line"></div>
+</div>
+
+<section id="syllabus">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">B.A. Honours English — NEP 2020</p>
+      <h2>The syllabus, book by book</h2>
+      <p>The core texts prescribed across all eight semesters. Tap a semester to open it. Every title links out to where it can be found.</p>
+    </div>
+    <div class="syllabus-legend">
+      <span><span class="dot" style="background:var(--gold);"></span>Free full text (Gutenberg / Archive.org)</span>
+      <span><span class="dot" style="background:#8a8f97;"></span>Find / purchase (in copyright)</span>
+    </div>
+
+    <details class="syllabus-sem">
+      <summary>Semester I <span class="sem-count">2 papers</span></summary>
+      <div class="syllabus-body">
+        <div class="syllabus-course">
+          <h4>Core I — Introduction to Literary Studies</h4>
+          <ul>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Norton%20Introduction%20to%20Literature" target="_blank" rel="noopener">The Norton Introduction to Literature</a> <span class="auth">— ed. Kelly J. Mays</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Widening%20Arc%3A%20A%20Selection%20of%20Prose%20and%20Stories" target="_blank" rel="noopener">The Widening Arc: A Selection of Prose and Stories</a> <span class="auth">— ed. Asima Ranjan Parhi et al.</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Melodious%20Songs%20and%20Memorable%20Tales" target="_blank" rel="noopener">Melodious Songs and Memorable Tales</a> <span class="auth">— Gyanajuga</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Doctor%20Faustus" target="_blank" rel="noopener">Doctor Faustus</a> <span class="auth">— Christopher Marlowe</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=As%20You%20Like%20It" target="_blank" rel="noopener">As You Like It</a> <span class="auth">— William Shakespeare</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Ghasiram%20Kotwal" target="_blank" rel="noopener">Ghasiram Kotwal</a> <span class="auth">— Vijay Tendulkar</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=The%20Bear" target="_blank" rel="noopener">The Bear</a> <span class="auth">— Anton Chekhov</span></li>
+          </ul>
+          <details class="suggested-toggle">
+            <summary>Suggested readings <span class="sr-count">(4)</span></summary>
+            <ul class="suggested-list">
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Literature%3A%20An%20Introduction%20to%20Fiction%2C%20Poetry%2C%20and%20Drama" target="_blank" rel="noopener">Literature: An Introduction to Fiction, Poetry, and Drama</a> <span class="auth">— X.J. Kennedy & Dana Gioia</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Literature%3A%20A%20Portable%20Anthology" target="_blank" rel="noopener">Literature: A Portable Anthology</a> <span class="auth">— ed. Janet E. Gardner et al.</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Norton%20Introduction%20to%20Literature%2C%20Portable%2013th%20Edition" target="_blank" rel="noopener">The Norton Introduction to Literature, Portable 13th Edition</a> <span class="auth">— ed. Kelly J. Mays</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Aspects%20of%20the%20Novel" target="_blank" rel="noopener">Aspects of the Novel</a> <span class="auth">— E.M. Forster</span></li>
+            </ul>
+          </details>
+        </div>
+        <div class="syllabus-course">
+          <h4>Core II — Introduction to Language and Linguistics</h4>
+          <ul>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=An%20Introductory%20Text%20Book%20on%20Linguistics%20and%20Phonetics" target="_blank" rel="noopener">An Introductory Text Book on Linguistics and Phonetics</a> <span class="auth">— R.L. Varshney</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Global%20Englishes%3A%20A%20Resource%20Book%20for%20Students" target="_blank" rel="noopener">Global Englishes: A Resource Book for Students</a> <span class="auth">— Jennifer Jenkins</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=An%20Introduction%20to%20Language%20and%20Communication" target="_blank" rel="noopener">An Introduction to Language and Communication</a> <span class="auth">— Ekmajian et al.</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Indian%20English%20through%20Newspapers" target="_blank" rel="noopener">Indian English through Newspapers</a> <span class="auth">— A.R. Parhi</span></li>
+          </ul>
+          <details class="suggested-toggle">
+            <summary>Suggested readings <span class="sr-count">(6)</span></summary>
+            <ul class="suggested-list">
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Linguistics" target="_blank" rel="noopener">Linguistics</a> <span class="auth">— David Crystal</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Indianization%20of%20English" target="_blank" rel="noopener">The Indianization of English</a> <span class="auth">— Braj B. Kachru</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Communicative%20Competence" target="_blank" rel="noopener">Communicative Competence</a> <span class="auth">— Tanutrushna Panigrahi</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=English%20as%20a%20World%20Language" target="_blank" rel="noopener">English as a World Language</a> <span class="auth">— David Crystal</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=A%20Course%20in%20Linguistics" target="_blank" rel="noopener">A Course in Linguistics</a> <span class="auth">— Tarni Prasad</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Linguistics%3A%20A%20Very%20Short%20Introduction" target="_blank" rel="noopener">Linguistics: A Very Short Introduction</a> <span class="auth">— P.H. Matthews</span></li>
+            </ul>
+          </details>
+        </div>
+      </div>
+    </details>
+
+    <details class="syllabus-sem">
+      <summary>Semester II <span class="sem-count">2 papers</span></summary>
+      <div class="syllabus-body">
+        <div class="syllabus-course">
+          <h4>Core III — British Poetry and Drama</h4>
+          <ul>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Macbeth" target="_blank" rel="noopener">Macbeth</a> <span class="auth">— William Shakespeare</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Twelfth%20Night" target="_blank" rel="noopener">Twelfth Night</a> <span class="auth">— William Shakespeare</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=The%20Jew%20of%20Malta" target="_blank" rel="noopener">The Jew of Malta</a> <span class="auth">— Christopher Marlowe</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=The%20Shoemaker%27s%20Holiday" target="_blank" rel="noopener">The Shoemaker's Holiday</a> <span class="auth">— Thomas Dekker</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Short%20Oxford%20History%20of%20English%20Literature" target="_blank" rel="noopener">The Short Oxford History of English Literature</a> <span class="auth">— Andrew Sanders</span></li>
+          </ul>
+          <details class="suggested-toggle">
+            <summary>Suggested readings <span class="sr-count">(4)</span></summary>
+            <ul class="suggested-list">
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=A%20History%20of%20English%20Literature%3A%20Traversing%20Centuries" target="_blank" rel="noopener">A History of English Literature: Traversing Centuries</a> <span class="auth">— Chaudhury & Goswami</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Shakespeare%3A%20The%20Invention%20of%20the%20Human" target="_blank" rel="noopener">Shakespeare: The Invention of the Human</a> <span class="auth">— Harold Bloom</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Marlowe%3A%20A%20Critical%20Study" target="_blank" rel="noopener">Marlowe: A Critical Study</a> <span class="auth">— J.B. Steane</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Critical%20Essays%20on%20Christopher%20Marlowe" target="_blank" rel="noopener">Critical Essays on Christopher Marlowe</a> <span class="auth">— Emily Carroll Bartels</span></li>
+            </ul>
+          </details>
+        </div>
+        <div class="syllabus-course">
+          <h4>Core IV — European Classical Literature</h4>
+          <ul>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Odyssey" target="_blank" rel="noopener">Odyssey</a> <span class="auth">— Homer</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Aeneid" target="_blank" rel="noopener">Aeneid</a> <span class="auth">— Virgil</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Oedipus%20the%20King" target="_blank" rel="noopener">Oedipus the King</a> <span class="auth">— Sophocles</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Prometheus%20Bound" target="_blank" rel="noopener">Prometheus Bound</a> <span class="auth">— Aeschylus</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Frogs" target="_blank" rel="noopener">Frogs</a> <span class="auth">— Aristophanes</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Asinaria" target="_blank" rel="noopener">Asinaria</a> <span class="auth">— Plautus</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Ars%20Poetica" target="_blank" rel="noopener">Ars Poetica</a> <span class="auth">— Horace</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=On%20the%20Sublime" target="_blank" rel="noopener">On the Sublime</a> <span class="auth">— Longinus</span></li>
+          </ul>
+          <details class="suggested-toggle">
+            <summary>Suggested readings <span class="sr-count">(4)</span></summary>
+            <ul class="suggested-list">
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=European%20Classical%20Literature" target="_blank" rel="noopener">European Classical Literature</a> <span class="auth">— Amit Ganguly & Jay Bansal</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Hand%20Book%20on%20European%20Classical%20Literature" target="_blank" rel="noopener">Hand Book on European Classical Literature</a> <span class="auth">— Biplab Banerjee</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Mimesis%3A%20The%20Representation%20of%20Reality%20in%20Western%20Literature" target="_blank" rel="noopener">Mimesis: The Representation of Reality in Western Literature</a> <span class="auth">— Erich Auerbach</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Ancient%20Greek%20Literature%20and%20Society" target="_blank" rel="noopener">Ancient Greek Literature and Society</a> <span class="auth">— Charles Rowan Beye</span></li>
+            </ul>
+          </details>
+        </div>
+      </div>
+    </details>
+
+    <details class="syllabus-sem">
+      <summary>Semester III <span class="sem-count">3 papers</span></summary>
+      <div class="syllabus-body">
+        <div class="syllabus-course">
+          <h4>Core V — Indian Classical Literature</h4>
+          <ul>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Mahabharata" target="_blank" rel="noopener">The Mahabharata</a> <span class="auth">— tr. J.A.B. van Buitenen</span></li>
+            <li><a class="book-link" href="https://archive.org/search?query=The%20Ramayana%20of%20Valmiki" target="_blank" rel="noopener">The Ramayana of Valmiki</a> <span class="auth">— Gita Press edition</span></li>
+            <li><a class="book-link" href="https://archive.org/search?query=Abhijnanasakuntalam" target="_blank" rel="noopener">Abhijnanasakuntalam</a> <span class="auth">— Kalidasa</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Rama%27s%20Last%20Act%20%28Uttararamacharita%29" target="_blank" rel="noopener">Rama's Last Act (Uttararamacharita)</a> <span class="auth">— Bhavabhuti</span></li>
+            <li><a class="book-link" href="https://archive.org/search?query=Mrcchakatika" target="_blank" rel="noopener">Mrcchakatika</a> <span class="auth">— Sudraka</span></li>
+            <li><a class="book-link" href="https://archive.org/search?query=Natyashastra" target="_blank" rel="noopener">Natyashastra</a> <span class="auth">— Bharata</span></li>
+            <li><a class="book-link" href="https://archive.org/search?query=Sahitya%20Darpana" target="_blank" rel="noopener">Sahitya Darpana</a> <span class="auth">— Vishvanatha Kaviraja</span></li>
+          </ul>
+          <details class="suggested-toggle">
+            <summary>Suggested readings <span class="sr-count">(5)</span></summary>
+            <ul class="suggested-list">
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Kalidasa%3A%20Critical%20Edition" target="_blank" rel="noopener">Kalidasa: Critical Edition</a> <span class="auth">— Sahitya Akademi</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20New%20Vedic%20Selection%2C%20Vol.%201" target="_blank" rel="noopener">The New Vedic Selection, Vol. 1</a> <span class="auth">— B.B. Choubey</span></li>
+            <li><a class="book-link" href="https://archive.org/search?query=Rig%20Veda" target="_blank" rel="noopener">Rig Veda</a> <span class="auth">— tr. H.H. Wilson</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Natyashastra%20%28Vol.%20I%29" target="_blank" rel="noopener">Natyashastra (Vol. I)</a> <span class="auth">— tr. Manmohan Ghosh</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Universals%20of%20Poetics" target="_blank" rel="noopener">Universals of Poetics</a> <span class="auth">— Haldhar Panda</span></li>
+            </ul>
+          </details>
+        </div>
+        <div class="syllabus-course">
+          <h4>Core VI — British Poetry and Drama (17th–18th c.)</h4>
+          <ul>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Volpone" target="_blank" rel="noopener">Volpone</a> <span class="auth">— Ben Jonson</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=The%20Alchemist" target="_blank" rel="noopener">The Alchemist</a> <span class="auth">— Ben Jonson</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=All%20for%20Love" target="_blank" rel="noopener">All for Love</a> <span class="auth">— John Dryden</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=The%20Old%20Bachelor" target="_blank" rel="noopener">The Old Bachelor</a> <span class="auth">— William Congreve</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Complete%20Poems%20and%20Songs%20of%20Robert%20Burns" target="_blank" rel="noopener">Complete Poems and Songs of Robert Burns</a></li>
+          </ul>
+          <details class="suggested-toggle">
+            <summary>Suggested readings <span class="sr-count">(3)</span></summary>
+            <ul class="suggested-list">
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=A%20History%20of%20English%20Literature%3A%20Traversing%20the%20Centuries" target="_blank" rel="noopener">A History of English Literature: Traversing the Centuries</a> <span class="auth">— Chowdhury & Goswami</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Norton%20Anthology%20of%20English%20Literature%2C%20Vol.%20B" target="_blank" rel="noopener">The Norton Anthology of English Literature, Vol. B</a></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Norton%20Anthology%20of%20English%20Literature%3A%20The%20Restoration%20and%20the%20Eighteenth%20Century" target="_blank" rel="noopener">The Norton Anthology of English Literature: The Restoration and the Eighteenth Century</a></li>
+            </ul>
+          </details>
+        </div>
+        <div class="syllabus-course">
+          <h4>Core VII — British Prose (18th Century)</h4>
+          <ul>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Robinson%20Crusoe" target="_blank" rel="noopener">Robinson Crusoe</a> <span class="auth">— Daniel Defoe</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Readings%20in%20English%20Prose%20of%20the%20Eighteenth%20Century" target="_blank" rel="noopener">Readings in English Prose of the Eighteenth Century</a> <span class="auth">— R.M. Alden</span></li>
+          </ul>
+          <details class="suggested-toggle">
+            <summary>Suggested readings <span class="sr-count">(3)</span></summary>
+            <ul class="suggested-list">
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=A%20History%20of%20English%20Literature%3A%20Traversing%20the%20Centuries" target="_blank" rel="noopener">A History of English Literature: Traversing the Centuries</a> <span class="auth">— Chowdhury & Goswami</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Norton%20Anthology%20of%20English%20Literature%3A%20The%20Restoration%20and%20the%20Eighteenth%20Century" target="_blank" rel="noopener">The Norton Anthology of English Literature: The Restoration and the Eighteenth Century</a></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=English%20Literature" target="_blank" rel="noopener">English Literature</a> <span class="auth">— William J. Long</span></li>
+            </ul>
+          </details>
+        </div>
+      </div>
+    </details>
+
+    <details class="syllabus-sem">
+      <summary>Semester IV <span class="sem-count">3 papers</span></summary>
+      <div class="syllabus-body">
+        <div class="syllabus-course">
+          <h4>Core VIII — The Romantic Revival</h4>
+          <ul>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Songs%20of%20Innocence%20and%20of%20Experience" target="_blank" rel="noopener">Songs of Innocence and of Experience</a> <span class="auth">— William Blake</span></li>
+          </ul>
+          <details class="suggested-toggle">
+            <summary>Suggested readings <span class="sr-count">(4)</span></summary>
+            <ul class="suggested-list">
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Routledge%20History%20of%20Literature%20in%20English" target="_blank" rel="noopener">The Routledge History of Literature in English</a></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=History%20of%20English%20Literature%3A%20Traversing%20the%20Centuries" target="_blank" rel="noopener">History of English Literature: Traversing the Centuries</a> <span class="auth">— Chowdhury & Goswami</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Romantic%20Imagination" target="_blank" rel="noopener">The Romantic Imagination</a> <span class="auth">— C.M. Bowra</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Pelican%20Guide%20to%20English%20Literature%2C%20Vol.%205" target="_blank" rel="noopener">Pelican Guide to English Literature, Vol. 5</a> <span class="auth">— ed. Boris Ford</span></li>
+            </ul>
+          </details>
+        </div>
+        <div class="syllabus-course">
+          <h4>Core IX — The Victorian Era</h4>
+          <ul>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Frankenstein" target="_blank" rel="noopener">Frankenstein</a> <span class="auth">— Mary Shelley</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Pride%20and%20Prejudice" target="_blank" rel="noopener">Pride and Prejudice</a> <span class="auth">— Jane Austen</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Hard%20Times" target="_blank" rel="noopener">Hard Times</a> <span class="auth">— Charles Dickens</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Mary%20Barton" target="_blank" rel="noopener">Mary Barton</a> <span class="auth">— Elizabeth Gaskell</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Nineteenth%20Century%3A%201798%E2%80%931900" target="_blank" rel="noopener">The Nineteenth Century: 1798–1900</a> <span class="auth">— ed. Brian Martin</span></li>
+          </ul>
+          <details class="suggested-toggle">
+            <summary>Suggested readings <span class="sr-count">(5)</span></summary>
+            <ul class="suggested-list">
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=English%20Literature%3A%20A%20Very%20Short%20Introduction" target="_blank" rel="noopener">English Literature: A Very Short Introduction</a> <span class="auth">— Jonathan Bate</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20English%20Novel" target="_blank" rel="noopener">The English Novel</a> <span class="auth">— Terry Eagleton</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Cultural%20Critics" target="_blank" rel="noopener">The Cultural Critics</a> <span class="auth">— Leslie Johnson</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Nineteenth-century%20English%20Novel" target="_blank" rel="noopener">The Nineteenth-century English Novel</a> <span class="auth">— James Killroy</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Oxford%20Handbook%20of%20the%20Victorian%20Novel" target="_blank" rel="noopener">The Oxford Handbook of the Victorian Novel</a> <span class="auth">— ed. Lisa Rodensky</span></li>
+            </ul>
+          </details>
+        </div>
+        <div class="syllabus-course">
+          <h4>Core X — The American Literary Renaissance</h4>
+          <ul>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Norton%20Anthology%20of%20American%20Literature" target="_blank" rel="noopener">The Norton Anthology of American Literature</a> <span class="auth">— Vols. A & B</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=The%20Scarlet%20Letter%20and%20Other%20Writings" target="_blank" rel="noopener">The Scarlet Letter and Other Writings</a> <span class="auth">— Nathaniel Hawthorne</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Leaves%20of%20Grass" target="_blank" rel="noopener">Leaves of Grass</a> <span class="auth">— Walt Whitman</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=The%20Poems%20of%20Emily%20Dickinson" target="_blank" rel="noopener">The Poems of Emily Dickinson</a> <span class="auth">— ed. R.W. Franklin</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Walden" target="_blank" rel="noopener">Walden</a> <span class="auth">— Henry David Thoreau</span></li>
+          </ul>
+          <details class="suggested-toggle">
+            <summary>Suggested readings <span class="sr-count">(5)</span></summary>
+            <ul class="suggested-list">
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Pelican%20Guide%20to%20English%20Literature%2C%20Vol.%209%3A%20American%20Literature" target="_blank" rel="noopener">Pelican Guide to English Literature, Vol. 9: American Literature</a> <span class="auth">— ed. Boris Ford</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Highlights%20of%20American%20Literature" target="_blank" rel="noopener">Highlights of American Literature</a> <span class="auth">— Carl Bode</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=A%20Short%20History%20of%20American%20Literature" target="_blank" rel="noopener">A Short History of American Literature</a> <span class="auth">— Krishna Sen & Ashok Sengupta</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Moby-Dick%3B%20Or%2C%20The%20Whale" target="_blank" rel="noopener">Moby-Dick; Or, The Whale</a> <span class="auth">— Herman Melville, ed. Hershel Parker</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Story%20of%20American%20Literature" target="_blank" rel="noopener">The Story of American Literature</a> <span class="auth">— Ludwig Lewisohn</span></li>
+            </ul>
+          </details>
+        </div>
+      </div>
+    </details>
+
+    <details class="syllabus-sem">
+      <summary>Semester V <span class="sem-count">3 papers</span></summary>
+      <div class="syllabus-body">
+        <div class="syllabus-course">
+          <h4>Core XI — Introduction to Indian Writing in English</h4>
+          <ul>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Final%20Solutions" target="_blank" rel="noopener">Final Solutions</a> <span class="auth">— Mahesh Dattani</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Silence%21%20The%20Court%20is%20in%20Session" target="_blank" rel="noopener">Silence! The Court is in Session</a> <span class="auth">— Vijay Tendulkar</span></li>
+            <li><a class="book-link" href="https://archive.org/search?query=The%20Discovery%20of%20India" target="_blank" rel="noopener">The Discovery of India</a> <span class="auth">— Jawaharlal Nehru</span></li>
+            <li><a class="book-link" href="https://archive.org/search?query=Karma%20Yoga" target="_blank" rel="noopener">Karma Yoga</a> <span class="auth">— Swami Vivekananda</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Religion%2C%20Science%20and%20Culture" target="_blank" rel="noopener">Religion, Science and Culture</a> <span class="auth">— S. Radhakrishnan</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Unaccustomed%20Earth" target="_blank" rel="noopener">Unaccustomed Earth</a> <span class="auth">— Jhumpa Lahiri</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=A%20Clutch%20of%20Indian%20Masterpieces" target="_blank" rel="noopener">A Clutch of Indian Masterpieces</a> <span class="auth">— ed. David Davidar</span></li>
+          </ul>
+          <details class="suggested-toggle">
+            <summary>Suggested readings <span class="sr-count">(2)</span></summary>
+            <ul class="suggested-list">
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Picador%20Book%20of%20Modern%20Indian%20Literature" target="_blank" rel="noopener">Picador Book of Modern Indian Literature</a> <span class="auth">— ed. Amit Chaudhuri</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Collected%20Plays" target="_blank" rel="noopener">Collected Plays</a> <span class="auth">— Mahesh Dattani</span></li>
+            </ul>
+          </details>
+        </div>
+        <div class="syllabus-course">
+          <h4>Core XII — Literary Criticism from Plato to Leavis</h4>
+          <ul>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=The%20Republic%20%28Book%20X%29" target="_blank" rel="noopener">The Republic (Book X)</a> <span class="auth">— Plato</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=The%20Poetics" target="_blank" rel="noopener">The Poetics</a> <span class="auth">— Aristotle</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Biographia%20Literaria" target="_blank" rel="noopener">Biographia Literaria</a> <span class="auth">— S.T. Coleridge</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Critical%20Approaches%20to%20Literature" target="_blank" rel="noopener">Critical Approaches to Literature</a> <span class="auth">— David Daiches</span></li>
+          </ul>
+          <details class="suggested-toggle">
+            <summary>Suggested readings <span class="sr-count">(3)</span></summary>
+            <ul class="suggested-list">
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=An%20Introduction%20to%20Literature%2C%20Criticism%20and%20Theory" target="_blank" rel="noopener">An Introduction to Literature, Criticism and Theory</a> <span class="auth">— Andrew Bennett & Nicholas Royle</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Norton%20Anthology%20of%20Theory%20and%20Criticism" target="_blank" rel="noopener">The Norton Anthology of Theory and Criticism</a></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Literary%20Criticism%3A%20An%20Introduction%20to%20Theory%20and%20Practice" target="_blank" rel="noopener">Literary Criticism: An Introduction to Theory and Practice</a> <span class="auth">— Charles E. Bressler</span></li>
+            </ul>
+          </details>
+        </div>
+        <div class="syllabus-course">
+          <h4>Core XIII — Modern English Literature (20th c.)</h4>
+          <ul>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Mrs.%20Dalloway" target="_blank" rel="noopener">Mrs. Dalloway</a> <span class="auth">— Virginia Woolf</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Dubliners" target="_blank" rel="noopener">Dubliners</a> <span class="auth">— James Joyce</span></li>
+          </ul>
+          <details class="suggested-toggle">
+            <summary>Suggested readings <span class="sr-count">(4)</span></summary>
+            <ul class="suggested-list">
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Pelican%20Guide%20to%20English%20Literature%3A%20The%20Modern%20Age" target="_blank" rel="noopener">Pelican Guide to English Literature: The Modern Age</a> <span class="auth">— ed. Boris Ford</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=English%20Literature%3A%20A%20Very%20Short%20Introduction" target="_blank" rel="noopener">English Literature: A Very Short Introduction</a> <span class="auth">— Jonathan Bate</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Modernism" target="_blank" rel="noopener">Modernism</a> <span class="auth">— Peter Faulkner</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Modernism%20%28New%20Accents%29" target="_blank" rel="noopener">Modernism (New Accents)</a> <span class="auth">— Peter Childs</span></li>
+            </ul>
+          </details>
+        </div>
+      </div>
+    </details>
+
+    <details class="syllabus-sem">
+      <summary>Semester VI <span class="sem-count">2 papers</span></summary>
+      <div class="syllabus-body">
+        <div class="syllabus-course">
+          <h4>Core XIV — Literatures from the World I</h4>
+          <ul>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Outsider" target="_blank" rel="noopener">The Outsider</a> <span class="auth">— Albert Camus</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Notes%20from%20Underground" target="_blank" rel="noopener">Notes from Underground</a> <span class="auth">— Fyodor Dostoevsky</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=In%20a%20Free%20State" target="_blank" rel="noopener">In a Free State</a> <span class="auth">— V.S. Naipaul</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Purple%20Hibiscus" target="_blank" rel="noopener">Purple Hibiscus</a> <span class="auth">— Chimamanda Ngozi Adichie</span></li>
+          </ul>
+          <details class="suggested-toggle">
+            <summary>Suggested readings <span class="sr-count">(2)</span></summary>
+            <ul class="suggested-list">
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Complete%20Stories" target="_blank" rel="noopener">The Complete Stories</a> <span class="auth">— Franz Kafka</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=What%20Is%20World%20Literature%3F" target="_blank" rel="noopener">What Is World Literature?</a> <span class="auth">— David Damrosch</span></li>
+            </ul>
+          </details>
+        </div>
+        <div class="syllabus-course">
+          <h4>Core XV — Indian Myths and Epics: New Perspectives</h4>
+          <ul>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Sri%20Radha" target="_blank" rel="noopener">Sri Radha</a> <span class="auth">— Ramakanta Rath</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Of%20Sons%20and%20Fathers" target="_blank" rel="noopener">Of Sons and Fathers</a> <span class="auth">— Asima Ranjan Parhi</span></li>
+            <li><a class="book-link" href="https://archive.org/search?query=Vasavadutta" target="_blank" rel="noopener">Vasavadutta</a> <span class="auth">— Sri Aurobindo</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Shakuntala" target="_blank" rel="noopener">Shakuntala</a> <span class="auth">— Namita Gokhale</span></li>
+            <li><a class="book-link" href="https://archive.org/search?query=The%20History%20of%20Indian%20Literature%2C%20Vol.%20I" target="_blank" rel="noopener">The History of Indian Literature, Vol. I</a> <span class="auth">— Maurice Winternitz</span></li>
+          </ul>
+          <details class="suggested-toggle">
+            <summary>Suggested readings <span class="sr-count">(2)</span></summary>
+            <ul class="suggested-list">
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Indian%20English%20Novelists%3A%20An%20Anthology%20of%20Critical%20Essays" target="_blank" rel="noopener">Indian English Novelists: An Anthology of Critical Essays</a> <span class="auth">— Madhusudan Prasad</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Indian%20Literature%20%28all%20volumes%29" target="_blank" rel="noopener">Indian Literature (all volumes)</a> <span class="auth">— Sisir Kumar Das</span></li>
+            </ul>
+          </details>
+        </div>
+      </div>
+    </details>
+
+    <details class="syllabus-sem">
+      <summary>Semester VII <span class="sem-count">4 papers</span></summary>
+      <div class="syllabus-body">
+        <div class="syllabus-course">
+          <h4>Core XVI — Literary Theory and Criticism</h4>
+          <ul>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Modern%20Literary%20Theory%3A%20A%20Reader" target="_blank" rel="noopener">Modern Literary Theory: A Reader</a> <span class="auth">— Patricia Waugh & Philip Rice</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Literary%20Theory%3A%20An%20Anthology" target="_blank" rel="noopener">Literary Theory: An Anthology</a> <span class="auth">— Julie Rivkin & Michael Ryan</span></li>
+          </ul>
+          <details class="suggested-toggle">
+            <summary>Suggested readings <span class="sr-count">(9)</span></summary>
+            <ul class="suggested-list">
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Literary%20Theory%3A%20An%20Introduction%20for%20Foreign%20Students" target="_blank" rel="noopener">Literary Theory: An Introduction for Foreign Students</a> <span class="auth">— Terry Eagleton</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Modern%20Literary%20Theory" target="_blank" rel="noopener">Modern Literary Theory</a> <span class="auth">— David Robey & Anne Jefferson</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Literary%20Theory%3A%20A%20Very%20Short%20Introduction" target="_blank" rel="noopener">Literary Theory: A Very Short Introduction</a> <span class="auth">— Jonathan Culler</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Beginning%20Theory" target="_blank" rel="noopener">Beginning Theory</a> <span class="auth">— Peter Barry</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Formalism%20and%20Marxism" target="_blank" rel="noopener">Formalism and Marxism</a> <span class="auth">— Tony Bennett</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Structuralism%20and%20Semiotics" target="_blank" rel="noopener">Structuralism and Semiotics</a> <span class="auth">— Terence Hawkes</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Deconstruction%3A%20Theory%20and%20Practice" target="_blank" rel="noopener">Deconstruction: Theory and Practice</a> <span class="auth">— Christopher Norris</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20New%20Historicism%20Reader" target="_blank" rel="noopener">The New Historicism Reader</a> <span class="auth">— ed. H. Aram Veeser</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Eco-Criticism" target="_blank" rel="noopener">Eco-Criticism</a> <span class="auth">— Greg Garrard</span></li>
+            </ul>
+          </details>
+        </div>
+        <div class="syllabus-course">
+          <h4>Core XVII — Women's Writings</h4>
+          <ul>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=A%20Room%20of%20One%27s%20Own" target="_blank" rel="noopener">A Room of One's Own</a> <span class="auth">— Virginia Woolf</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Second%20Sex" target="_blank" rel="noopener">The Second Sex</a> <span class="auth">— Simone de Beauvoir</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Jane%20Eyre" target="_blank" rel="noopener">Jane Eyre</a> <span class="auth">— Charlotte Brontë</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Wuthering%20Heights" target="_blank" rel="noopener">Wuthering Heights</a> <span class="auth">— Emily Brontë</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Wide%20Sargasso%20Sea" target="_blank" rel="noopener">Wide Sargasso Sea</a> <span class="auth">— Jean Rhys</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Grass%20is%20Singing" target="_blank" rel="noopener">The Grass is Singing</a> <span class="auth">— Doris Lessing</span></li>
+            <li><a class="book-link" href="https://archive.org/search?query=Saguna%20/%20Kamala" target="_blank" rel="noopener">Saguna / Kamala</a> <span class="auth">— Krupabai Satthianadhan</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Yajnaseni" target="_blank" rel="noopener">Yajnaseni</a> <span class="auth">— Pratibha Ray</span></li>
+          </ul>
+          <details class="suggested-toggle">
+            <summary>Suggested readings <span class="sr-count">(4)</span></summary>
+            <ul class="suggested-list">
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Sexual/Textual%20Politics" target="_blank" rel="noopener">Sexual/Textual Politics</a> <span class="auth">— Toril Moi</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=A%20Literature%20of%20Their%20Own" target="_blank" rel="noopener">A Literature of Their Own</a> <span class="auth">— Elaine Showalter</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Madwoman%20in%20the%20Attic" target="_blank" rel="noopener">The Madwoman in the Attic</a> <span class="auth">— Sandra Gilbert & Susan Gubar</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=A%20History%20of%20Feminist%20Literary%20Criticism" target="_blank" rel="noopener">A History of Feminist Literary Criticism</a> <span class="auth">— Gill Plain & Susan Sellers</span></li>
+            </ul>
+          </details>
+        </div>
+        <div class="syllabus-course">
+          <h4>Core XVIII — Emerging Trends in Literary Studies</h4>
+          <ul>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Living%20Mountain" target="_blank" rel="noopener">The Living Mountain</a> <span class="auth">— Amitav Ghosh</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Machines%20Like%20Me" target="_blank" rel="noopener">Machines Like Me</a> <span class="auth">— Ian McEwan</span></li>
+          </ul>
+          <details class="suggested-toggle">
+            <summary>Suggested readings <span class="sr-count">(10)</span></summary>
+            <ul class="suggested-list">
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Norton%20Anthology%20of%20Theory%20and%20Criticism%20%283rd%20ed.%29" target="_blank" rel="noopener">The Norton Anthology of Theory and Criticism (3rd ed.)</a></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=On%20Life-writing" target="_blank" rel="noopener">On Life-writing</a> <span class="auth">— Zachary Leader</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Encyclopedia%20of%20Life%20Writing" target="_blank" rel="noopener">Encyclopedia of Life Writing</a> <span class="auth">— ed. Margaretta Jolly</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Cambridge%20Companion%20to%20Travel%20Writing" target="_blank" rel="noopener">The Cambridge Companion to Travel Writing</a> <span class="auth">— Peter Hulme & Tim Youngs</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Literature%20and%20the%20Anthropocene" target="_blank" rel="noopener">Literature and the Anthropocene</a> <span class="auth">— Pieter Vermeulen</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Cambridge%20Companion%20to%20Literature%20and%20the%20Anthropocene" target="_blank" rel="noopener">The Cambridge Companion to Literature and the Anthropocene</a> <span class="auth">— John Parham</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Great%20Derangement" target="_blank" rel="noopener">The Great Derangement</a> <span class="auth">— Amitav Ghosh</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20New%20Climate%20War" target="_blank" rel="noopener">The New Climate War</a> <span class="auth">— Michael E. Mann</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Literature%20in%20the%20Digital%20Age" target="_blank" rel="noopener">Literature in the Digital Age</a> <span class="auth">— Adam Hammond</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=A%20Companion%20to%20Digital%20Literary%20Studies" target="_blank" rel="noopener">A Companion to Digital Literary Studies</a> <span class="auth">— ed. Ray Siemens & Susan Schreibman</span></li>
+            </ul>
+          </details>
+        </div>
+        <div class="syllabus-course">
+          <h4>Core XIX — Modern English Literature II</h4>
+          <ul>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=A%20Portrait%20of%20the%20Artist%20as%20a%20Young%20Man" target="_blank" rel="noopener">A Portrait of the Artist as a Young Man</a> <span class="auth">— James Joyce</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=To%20the%20Lighthouse" target="_blank" rel="noopener">To the Lighthouse</a> <span class="auth">— Virginia Woolf</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Saint%20Joan" target="_blank" rel="noopener">Saint Joan</a> <span class="auth">— George Bernard Shaw</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Waiting%20for%20Godot" target="_blank" rel="noopener">Waiting for Godot</a> <span class="auth">— Samuel Beckett</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Look%20Back%20in%20Anger" target="_blank" rel="noopener">Look Back in Anger</a> <span class="auth">— John Osborne</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Women%20in%20Love" target="_blank" rel="noopener">Women in Love</a> <span class="auth">— D.H. Lawrence</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=A%20Passage%20to%20India" target="_blank" rel="noopener">A Passage to India</a> <span class="auth">— E.M. Forster</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Lord%20of%20the%20Flies" target="_blank" rel="noopener">Lord of the Flies</a> <span class="auth">— William Golding</span></li>
+          </ul>
+          <details class="suggested-toggle">
+            <summary>Suggested readings <span class="sr-count">(6)</span></summary>
+            <ul class="suggested-list">
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Pelican%20Guide%20to%20English%20Literature%3A%20The%20Modern%20Age" target="_blank" rel="noopener">Pelican Guide to English Literature: The Modern Age</a> <span class="auth">— ed. Boris Ford</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Modernism" target="_blank" rel="noopener">Modernism</a> <span class="auth">— ed. Malcolm Bradbury & James McFarlane</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Modern%20Writer%20and%20His%20World" target="_blank" rel="noopener">The Modern Writer and His World</a> <span class="auth">— G.S. Fraser</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Modernism%20%28Critical%20Idiom%29" target="_blank" rel="noopener">Modernism (Critical Idiom)</a> <span class="auth">— Peter Faulkner</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Modernism%20%28New%20Critical%20Idiom%29" target="_blank" rel="noopener">Modernism (New Critical Idiom)</a> <span class="auth">— Peter Childs</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Modernism%3A%20A%20Very%20Short%20Introduction" target="_blank" rel="noopener">Modernism: A Very Short Introduction</a> <span class="auth">— Christopher Butler</span></li>
+            </ul>
+          </details>
+        </div>
+      </div>
+    </details>
+
+    <details class="syllabus-sem">
+      <summary>Semester VIII <span class="sem-count">4 papers</span></summary>
+      <div class="syllabus-body">
+        <div class="syllabus-course">
+          <h4>Core XX — Postcolonial Literatures</h4>
+          <ul>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Kanthapura" target="_blank" rel="noopener">Kanthapura</a> <span class="auth">— Raja Rao</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20English%20Teacher" target="_blank" rel="noopener">The English Teacher</a> <span class="auth">— R.K. Narayan</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Mimic%20Men" target="_blank" rel="noopener">The Mimic Men</a> <span class="auth">— V.S. Naipaul</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=No%20Longer%20at%20Ease" target="_blank" rel="noopener">No Longer at Ease</a> <span class="auth">— Chinua Achebe</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=July%27s%20People" target="_blank" rel="noopener">July's People</a> <span class="auth">— Nadine Gordimer</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Life%20%26%20Times%20of%20Michael%20K" target="_blank" rel="noopener">Life & Times of Michael K</a> <span class="auth">— J.M. Coetzee</span></li>
+          </ul>
+          <details class="suggested-toggle">
+            <summary>Suggested readings <span class="sr-count">(5)</span></summary>
+            <ul class="suggested-list">
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Empire%20Writes%20Back" target="_blank" rel="noopener">The Empire Writes Back</a> <span class="auth">— Ashcroft, Griffiths & Tiffin</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Location%20of%20Culture" target="_blank" rel="noopener">The Location of Culture</a> <span class="auth">— Homi K. Bhabha</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Postcolonial%20Theory%3A%20An%20Introduction" target="_blank" rel="noopener">Postcolonial Theory: An Introduction</a> <span class="auth">— Leela Gandhi</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Orientalism" target="_blank" rel="noopener">Orientalism</a> <span class="auth">— Edward Said</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Can%20the%20Subaltern%20Speak%3F" target="_blank" rel="noopener">Can the Subaltern Speak?</a> <span class="auth">— Gayatri Chakravorty Spivak</span></li>
+            </ul>
+          </details>
+        </div>
+        <div class="syllabus-course">
+          <h4>Core XXI — Literatures from the World II</h4>
+          <ul>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Tartuffe" target="_blank" rel="noopener">Tartuffe</a> <span class="auth">— Molière</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Six%20Characters%20in%20Search%20of%20an%20Author" target="_blank" rel="noopener">Six Characters in Search of an Author</a> <span class="auth">— Luigi Pirandello</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=The%20Death%20of%20Ivan%20Ilyich" target="_blank" rel="noopener">The Death of Ivan Ilyich</a> <span class="auth">— Leo Tolstoy</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=Hedda%20Gabler" target="_blank" rel="noopener">Hedda Gabler</a> <span class="auth">— Henrik Ibsen</span></li>
+            <li><a class="book-link" href="https://www.gutenberg.org/ebooks/search/?query=The%20Metamorphosis" target="_blank" rel="noopener">The Metamorphosis</a> <span class="auth">— Franz Kafka</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Norton%20Anthology%20of%20World%20Literature" target="_blank" rel="noopener">The Norton Anthology of World Literature</a> <span class="auth">— Vols. A–C, D–F</span></li>
+          </ul>
+          <details class="suggested-toggle">
+            <summary>Suggested readings <span class="sr-count">(6)</span></summary>
+            <ul class="suggested-list">
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Reference%20Guide%20to%20World%20Literature" target="_blank" rel="noopener">Reference Guide to World Literature</a> <span class="auth">— St. James Press</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=How%20to%20Read%20World%20Literature" target="_blank" rel="noopener">How to Read World Literature</a> <span class="auth">— David Damrosch</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Routledge%20Concise%20History%20of%20World%20Literature" target="_blank" rel="noopener">The Routledge Concise History of World Literature</a> <span class="auth">— Theo D'haen</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Globalization%20and%20Literature" target="_blank" rel="noopener">Globalization and Literature</a> <span class="auth">— Suman Gupta</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Literature%20and%20the%20World" target="_blank" rel="noopener">Literature and the World</a> <span class="auth">— Stefan Helgesson & Mads Rosendahl Thomsen</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Idea%20of%20World%20Literature" target="_blank" rel="noopener">The Idea of World Literature</a> <span class="auth">— John Pizer</span></li>
+            </ul>
+          </details>
+        </div>
+        <div class="syllabus-course">
+          <h4>Core XXII — Postmodernism and Literary Theory</h4>
+          <ul>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Beginning%20Theory" target="_blank" rel="noopener">Beginning Theory</a> <span class="auth">— Peter Barry</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=A%20Reader%27s%20Guide%20to%20Contemporary%20Literary%20Theory" target="_blank" rel="noopener">A Reader's Guide to Contemporary Literary Theory</a> <span class="auth">— Raman Selden</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Literary%20Theory%3A%20An%20Introduction" target="_blank" rel="noopener">Literary Theory: An Introduction</a> <span class="auth">— Terry Eagleton</span></li>
+          </ul>
+          <details class="suggested-toggle">
+            <summary>Suggested readings <span class="sr-count">(7)</span></summary>
+            <ul class="suggested-list">
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Post-Colonial%20Studies%3A%20The%20Key%20Concepts" target="_blank" rel="noopener">Post-Colonial Studies: The Key Concepts</a> <span class="auth">— Ashcroft, Griffiths & Tiffin</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Oxford%20Concise%20Dictionary%20of%20Literary%20Terms" target="_blank" rel="noopener">Oxford Concise Dictionary of Literary Terms</a> <span class="auth">— Chris Baldick</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Literary%20Theory%3A%20The%20Basics" target="_blank" rel="noopener">Literary Theory: The Basics</a> <span class="auth">— Hans Bertens</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Literary%20Theory%3A%20A%20Very%20Short%20Introduction" target="_blank" rel="noopener">Literary Theory: A Very Short Introduction</a> <span class="auth">— Jonathan Culler</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=A%20Glossary%20of%20Literary%20Terms" target="_blank" rel="noopener">A Glossary of Literary Terms</a> <span class="auth">— M.H. Abrams</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=The%20Oxford%20Companion%20to%20English%20Literature" target="_blank" rel="noopener">The Oxford Companion to English Literature</a> <span class="auth">— ed. Margaret Drabble</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=After%20Theory" target="_blank" rel="noopener">After Theory</a> <span class="auth">— Terry Eagleton</span></li>
+            </ul>
+          </details>
+        </div>
+        <div class="syllabus-course">
+          <h4>Core XXIII — Research Methods in Literary Studies</h4>
+          <ul>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=Literary%20Research%20Guide" target="_blank" rel="noopener">Literary Research Guide</a> <span class="auth">— James Harner</span></li>
+            <li><a class="book-link" href="https://www.google.com/search?tbm=bks&q=MLA%20Handbook" target="_blank" rel="noopener">MLA Handbook</a> <span class="auth">— 8th / 9th edition</span></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<div class="divider">
+  <div class="line"></div>
+  <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2" fill="#b8934a"/></svg>
+  <div class="line"></div>
+</div>
+
+<section id="support">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Support the classroom</p>
+      <h2>Send a payment</h2>
+      <p>Pay by GPay, PhonePe, Paytm, or any UPI app using the number below.</p>
+    </div>
+    <div class="enroll-card" style="max-width:420px;">
+      <p style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#6a6f77; text-transform:uppercase; letter-spacing:0.05em; margin:0 0 6px;">Pay via</p>
+      <p style="font-size:26px; font-weight:600; font-family:'Playfair Display',serif; margin:0 0 16px;">+91 96921 19187</p>
+      <p class="small-note" style="margin-top:0;">Add this number as a contact in GPay, PhonePe, or Paytm to send a payment. On a phone, you can also try the button below.</p>
+      <a class="btn" href="tel:+919692119187" style="width:fit-content; margin-top:10px;">Call / open dialer</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider">
+  <div class="line"></div>
+  <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2" fill="#b8934a"/></svg>
+  <div class="line"></div>
+</div>
+
+<section id="instructor">
+  <div class="wrap">
+    <div id="instructor-gate">
+      <p class="eyebrow">For the instructor</p>
+      <p style="max-width:50ch;">Enter the instructor passcode to add lessons and see who has enrolled. (Default passcode: <code>reading-room</code> — change the <code>TEACHER_PASSCODE</code> constant in the code to set your own.)</p>
+      <form id="gate-form" style="display:flex; gap:10px; margin-top:12px; max-width:360px;">
+        <input id="gate-pass" type="password" placeholder="Passcode" style="flex:1; padding:9px 12px; border:1px solid var(--line); border-radius:2px; background:#fbf7ee; font-family:'Source Serif 4',serif;">
+        <button class="btn ghost" type="submit">Enter</button>
+      </form>
+      <p class="msg err" id="gate-msg"></p>
+    </div>
+
+    <div id="instructor-panel">
+      <div class="section-head" style="margin-top:20px;">
+        <p class="eyebrow">Instructor desk</p>
+        <h2>Manage your classroom</h2>
+      </div>
+      <div class="admin-grid">
+        <div>
+          <h3 style="font-size:18px; margin-bottom:14px;">Add a lesson</h3>
+          <form class="card-form" id="lesson-form">
+            <div>
+              <label>Title</label>
+              <input id="l-title" type="text" required placeholder="On Irony in Pride and Prejudice">
+            </div>
+            <div>
+              <label>Description</label>
+              <input id="l-desc" type="text" placeholder="A short line on what this lesson covers">
+            </div>
+            <div>
+              <label>Video link (YouTube, Vimeo, or direct .mp4 URL)</label>
+              <input id="l-url" type="url" required placeholder="https://youtube.com/watch?v=...">
+            </div>
+            <button class="btn" type="submit" style="align-self:flex-start;">Add to the library</button>
+            <p class="msg" id="lesson-msg"></p>
+            <p class="small-note">Actual video files can't be uploaded here — paste a link to a video hosted on YouTube, Vimeo, or elsewhere instead.</p>
+          </form>
+          <h3 style="font-size:18px; margin:26px 0 14px;">Current lessons</h3>
+          <div class="admin-lessons-list" id="admin-lessons-list"></div>
+        </div>
+        <div>
+          <h3 style="font-size:18px; margin-bottom:14px;">Roster <span id="roster-count" style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#777;"></span></h3>
+          <ul class="roster-list" id="roster-list"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="flex-direction:column; align-items:flex-start; gap:6px;">
+    <div style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:12px;">
+      <p>SHIVA Institute of English — Mancheswar, Bhubaneswar</p>
+      <button id="instructor-toggle" onclick="document.getElementById('instructor').scrollIntoView({behavior:'smooth'})">Instructor desk →</button>
+    </div>
+    <p>Call / WhatsApp +91 9692119187 &nbsp;·&nbsp; lecture.in.english@gmail.com</p>
+  </div>
+</footer>
+
+<div class="modal-bg" id="modal-bg">
+  <div class="modal">
+    <button class="modal-close" id="modal-close">✕</button>
+    <p class="eyebrow" id="modal-numeral"></p>
+    <h3 id="modal-title"></h3>
+    <p id="modal-desc" style="color:#555; font-size:14px;"></p>
+    <div class="video-frame" id="modal-video"></div>
+  </div>
+</div>
+
+<script>
+const TEACHER_PASSCODE = "reading-room";
+
+function toRoman(num){
+  const map=[[1000,'M'],[900,'CM'],[500,'D'],[400,'CD'],[100,'C'],[90,'XC'],[50,'L'],[40,'XL'],[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']];
+  let res='';
+  for(const [v,s] of map){ while(num>=v){ res+=s; num-=v; } }
+  return res;
+}
+
+function toEmbedUrl(url){
+  try{
+    const u = new URL(url);
+    if(u.hostname.includes('youtube.com') || u.hostname.includes('youtu.be')){
+      let id = u.searchParams.get('v');
+      if(!id && u.hostname.includes('youtu.be')) id = u.pathname.slice(1);
+      if(!id && u.pathname.includes('/embed/')) return {type:'iframe', src:url};
+      return {type:'iframe', src:`https://www.youtube.com/embed/${id}`};
+    }
+    if(u.hostname.includes('vimeo.com')){
+      const id = u.pathname.split('/').filter(Boolean).pop();
+      return {type:'iframe', src:`https://player.vimeo.com/video/${id}`};
+    }
+    if(/\.(mp4|webm|ogg)$/i.test(u.pathname)){
+      return {type:'video', src:url};
+    }
+    return {type:'iframe', src:url};
+  }catch(e){
+    return {type:'iframe', src:url};
+  }
+}
+
+let enrolledEmail = null;
+
+function unlockLibrary(){
+  document.getElementById('library').classList.remove('locked');
+}
+
+async function loadLessons(){
+  const grid = document.getElementById('lib-grid');
+  let lessons = [];
+  try{
+    const res = await window.storage.get('lessons', true);
+    lessons = res ? JSON.parse(res.value) : [];
+  }catch(e){ lessons = []; }
+  renderLibrary(lessons);
+  renderAdminLessons(lessons);
+  return lessons;
+}
+
+function renderLibrary(lessons){
+  const grid = document.getElementById('lib-grid');
+  if(!lessons.length){
+    grid.innerHTML = '<p class="empty-note">No lessons yet — the instructor hasn\'t added any videos.</p>';
+    return;
+  }
+  grid.innerHTML = lessons.map((l,i)=>`
+    <div class="lesson-card" data-id="${l.id}">
+      <span class="numeral">Lesson ${toRoman(i+1)}</span>
+      <h3>${escapeHtml(l.title)}</h3>
+      <p>${escapeHtml(l.description||'')}</p>
+      <span class="play-seal">▶</span>
+    </div>`).join('');
+  grid.querySelectorAll('.lesson-card').forEach(card=>{
+    card.addEventListener('click', ()=>{
+      const id = card.getAttribute('data-id');
+      const lesson = lessons.find(l=>l.id===id);
+      if(lesson) openModal(lesson, lessons.indexOf(lesson));
+    });
+  });
+}
+
+function escapeHtml(str){
+  const d = document.createElement('div');
+  d.innerText = str;
+  return d.innerHTML;
+}
+
+function openModal(lesson, idx){
+  document.getElementById('modal-numeral').textContent = `Lesson ${toRoman(idx+1)}`;
+  document.getElementById('modal-title').textContent = lesson.title;
+  document.getElementById('modal-desc').textContent = lesson.description || '';
+  const embed = toEmbedUrl(lesson.url);
+  const frame = document.getElementById('modal-video');
+  if(embed.type==='video'){
+    frame.innerHTML = `<video src="${embed.src}" controls></video>`;
+  }else{
+    frame.innerHTML = `<iframe src="${embed.src}" allowfullscreen allow="autoplay; encrypted-media"></iframe>`;
+  }
+  document.getElementById('modal-bg').classList.add('open');
+}
+
+document.getElementById('modal-close').addEventListener('click', ()=>{
+  document.getElementById('modal-bg').classList.remove('open');
+  document.getElementById('modal-video').innerHTML = '';
+});
+document.getElementById('modal-bg').addEventListener('click', (e)=>{
+  if(e.target.id==='modal-bg'){
+    document.getElementById('modal-bg').classList.remove('open');
+    document.getElementById('modal-video').innerHTML = '';
+  }
+});
+
+// Tabs
+document.querySelectorAll('.tab').forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.pane').forEach(p=>p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(`pane-${tab.dataset.tab}`).classList.add('active');
+  });
+});
+
+// Enroll
+document.getElementById('enroll-form').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const name = document.getElementById('e-name').value.trim();
+  const email = document.getElementById('e-email').value.trim().toLowerCase();
+  const msg = document.getElementById('enroll-msg');
+  msg.textContent = '';
+  msg.className = 'msg';
+  if(!name || !email){ return; }
+  try{
+    let exists = null;
+    try{ exists = await window.storage.get(`students:${email}`, true); }catch(err){ exists = null; }
+    if(exists){
+      msg.textContent = "You're already enrolled — unlocking the library.";
+      msg.classList.add('ok');
+    }else{
+      await window.storage.set(`students:${email}`, JSON.stringify({name, email, enrolledAt: new Date().toISOString()}), true);
+      msg.textContent = 'Enrolled! The library is now unlocked.';
+      msg.classList.add('ok');
+    }
+    enrolledEmail = email;
+    unlockLibrary();
+    loadRoster();
+  }catch(err){
+    msg.textContent = "Something went wrong saving your enrollment. Please try again.";
+    msg.classList.add('err');
+  }
+});
+
+// Sign in
+document.getElementById('signin-form').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const email = document.getElementById('s-email').value.trim().toLowerCase();
+  const msg = document.getElementById('signin-msg');
+  msg.textContent = '';
+  msg.className = 'msg';
+  try{
+    let record = null;
+    try{ record = await window.storage.get(`students:${email}`, true); }catch(err){ record = null; }
+    if(record){
+      msg.textContent = 'Welcome back — library unlocked.';
+      msg.classList.add('ok');
+      enrolledEmail = email;
+      unlockLibrary();
+    }else{
+      msg.textContent = "We couldn't find that email. Try enrolling instead.";
+      msg.classList.add('err');
+    }
+  }catch(err){
+    msg.textContent = 'Something went wrong. Please try again.';
+    msg.classList.add('err');
+  }
+});
+
+// Instructor gate
+document.getElementById('gate-form').addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const val = document.getElementById('gate-pass').value;
+  const gmsg = document.getElementById('gate-msg');
+  if(val === TEACHER_PASSCODE){
+    document.getElementById('instructor-panel').classList.add('open');
+    document.getElementById('instructor-gate').style.display = 'none';
+    loadRoster();
+    loadLessons();
+  }else{
+    gmsg.textContent = 'Incorrect passcode.';
+  }
+});
+
+// Add lesson
+document.getElementById('lesson-form').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const title = document.getElementById('l-title').value.trim();
+  const description = document.getElementById('l-desc').value.trim();
+  const url = document.getElementById('l-url').value.trim();
+  const msg = document.getElementById('lesson-msg');
+  msg.textContent = '';
+  msg.className = 'msg';
+  if(!title || !url) return;
+  try{
+    let lessons = [];
+    try{
+      const res = await window.storage.get('lessons', true);
+      lessons = res ? JSON.parse(res.value) : [];
+    }catch(err){ lessons = []; }
+    lessons.push({ id: 'l' + Date.now(), title, description, url, createdAt: new Date().toISOString() });
+    const result = await window.storage.set('lessons', JSON.stringify(lessons), true);
+    if(!result){ throw new Error('save failed'); }
+    msg.textContent = 'Lesson added.';
+    msg.classList.add('ok');
+    document.getElementById('lesson-form').reset();
+    renderLibrary(lessons);
+    renderAdminLessons(lessons);
+  }catch(err){
+    msg.textContent = 'Could not save the lesson. Please try again.';
+    msg.classList.add('err');
+  }
+});
+
+function renderAdminLessons(lessons){
+  const list = document.getElementById('admin-lessons-list');
+  if(!lessons.length){
+    list.innerHTML = '<p class="empty-note">No lessons added yet.</p>';
+    return;
+  }
+  list.innerHTML = lessons.map((l,i)=>`
+    <div class="admin-lesson-row">
+      <span>Lesson ${toRoman(i+1)} — ${escapeHtml(l.title)}</span>
+      <button data-id="${l.id}">Remove</button>
+    </div>`).join('');
+  list.querySelectorAll('button[data-id]').forEach(btn=>{
+    btn.addEventListener('click', async ()=>{
+      const id = btn.getAttribute('data-id');
+      const updated = lessons.filter(l=>l.id!==id);
+      try{
+        await window.storage.set('lessons', JSON.stringify(updated), true);
+        renderLibrary(updated);
+        renderAdminLessons(updated);
+      }catch(err){ /* ignore */ }
+    });
+  });
+}
+
+async function loadRoster(){
+  const rosterList = document.getElementById('roster-list');
+  const countEl = document.getElementById('roster-count');
+  try{
+    const listRes = await window.storage.list('students:', true);
+    const keys = listRes ? listRes.keys : [];
+    countEl.textContent = `(${keys.length})`;
+    if(!keys.length){
+      rosterList.innerHTML = '<li class="empty-note">No students enrolled yet.</li>';
+      return;
+    }
+    const students = [];
+    for(const key of keys){
+      try{
+        const rec = await window.storage.get(key, true);
+        if(rec) students.push(JSON.parse(rec.value));
+      }catch(err){ /* skip */ }
+    }
+    students.sort((a,b)=> new Date(b.enrolledAt) - new Date(a.enrolledAt));
+    rosterList.innerHTML = students.map(s=>`
+      <li><span>${escapeHtml(s.name)}</span><span class="email">${escapeHtml(s.email)}</span></li>`).join('');
+  }catch(err){
+    rosterList.innerHTML = '<li class="empty-note">Could not load the roster.</li>';
+  }
+}
+
+loadLessons();
+</script>
+
+</body>
+</html>
